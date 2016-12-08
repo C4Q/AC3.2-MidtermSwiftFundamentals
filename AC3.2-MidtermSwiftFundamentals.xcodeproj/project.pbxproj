@@ -73,14 +73,22 @@
 		1EBB92501DF727D500E418FF /* AC3.2-MidtermSwiftFundamentals */ = {
 			isa = PBXGroup;
 			children = (
-				1EBB92511DF727D500E418FF /* AppDelegate.swift */,
 				1EBB92531DF727D500E418FF /* ViewController.swift */,
+				2D2874DF1DF9B8AE004C5EB9 /* Supporting Files */,
+			);
+			path = "AC3.2-MidtermSwiftFundamentals";
+			sourceTree = "<group>";
+		};
+		2D2874DF1DF9B8AE004C5EB9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1EBB92511DF727D500E418FF /* AppDelegate.swift */,
 				1EBB92551DF727D500E418FF /* Main.storyboard */,
 				1EBB92581DF727D500E418FF /* Assets.xcassets */,
 				1EBB925A1DF727D500E418FF /* LaunchScreen.storyboard */,
 				1EBB925D1DF727D500E418FF /* Info.plist */,
 			);
-			path = "AC3.2-MidtermSwiftFundamentals";
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
