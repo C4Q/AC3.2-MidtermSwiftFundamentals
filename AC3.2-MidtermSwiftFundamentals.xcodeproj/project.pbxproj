@@ -12,6 +12,7 @@
 		1EBB92571DF727D500E418FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBB92551DF727D500E418FF /* Main.storyboard */; };
 		1EBB92591DF727D500E418FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EBB92581DF727D500E418FF /* Assets.xcassets */; };
 		1EBB925C1DF727D500E418FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBB925A1DF727D500E418FF /* LaunchScreen.storyboard */; };
+		E3111E221DF9C3DF00C24363 /* C4Qstudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3111E211DF9C3DF00C24363 /* C4Qstudent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		1EBB925B1DF727D500E418FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EBB925D1DF727D500E418FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EBB92671DF727FF00E418FF /* AC3.2-MidtermSwiftFundamentalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AC3.2-MidtermSwiftFundamentalsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3111E211DF9C3DF00C24363 /* C4Qstudent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C4Qstudent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,14 +75,23 @@
 		1EBB92501DF727D500E418FF /* AC3.2-MidtermSwiftFundamentals */ = {
 			isa = PBXGroup;
 			children = (
-				1EBB92511DF727D500E418FF /* AppDelegate.swift */,
 				1EBB92531DF727D500E418FF /* ViewController.swift */,
+				E3111E211DF9C3DF00C24363 /* C4Qstudent.swift */,
+				E3111E231DF9CBDC00C24363 /* helpers */,
+			);
+			path = "AC3.2-MidtermSwiftFundamentals";
+			sourceTree = "<group>";
+		};
+		E3111E231DF9CBDC00C24363 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1EBB92511DF727D500E418FF /* AppDelegate.swift */,
 				1EBB92551DF727D500E418FF /* Main.storyboard */,
 				1EBB92581DF727D500E418FF /* Assets.xcassets */,
 				1EBB925A1DF727D500E418FF /* LaunchScreen.storyboard */,
 				1EBB925D1DF727D500E418FF /* Info.plist */,
 			);
-			path = "AC3.2-MidtermSwiftFundamentals";
+			name = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +199,7 @@
 			files = (
 				1EBB92541DF727D500E418FF /* ViewController.swift in Sources */,
 				1EBB92521DF727D500E418FF /* AppDelegate.swift in Sources */,
+				E3111E221DF9C3DF00C24363 /* C4Qstudent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-MidtermSwiftFundamentals/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC3-2-MidtermSwiftFundamentals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "AC3.2-MidtermSwiftFundamentals/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC3-2-MidtermSwiftFundamentals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
