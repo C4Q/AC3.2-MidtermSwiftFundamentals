@@ -173,7 +173,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
+        //
         func letsCheckIfTheseAreNumbers(_ arr: [String], closure: (String) -> Int?) -> [Int] {
             var numbers = [Int]()
             
