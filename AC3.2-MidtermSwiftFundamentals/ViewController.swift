@@ -13,6 +13,18 @@ enum Ship: String {
     case friend
 }
 
+class C4QStudent {
+    let name: String
+    let id: Int
+    var favoriteLunch: String
+    
+    init(name: String, id: Int, favoriteLunch: String) {
+        self.name = name
+        self.id = id
+        self.favoriteLunch = favoriteLunch
+    }
+}
+
 class ViewController: UIViewController {
     let someInts = [32, 11, 75, 42]
     let mixedVerbs = ["canoeing", "hiking", "be", "camping", "drive", "drink", "shampooing"]
@@ -25,6 +37,7 @@ class ViewController: UIViewController {
                         "California" : "Sacramento",
                         "Colorado" : "Denver"]
     
+    var a = "asd"
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +54,8 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
+        print(sum(arr: someInts))
+        print(sumHOrder(arr: someInts))
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -49,7 +63,7 @@ class ViewController: UIViewController {
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(findCapital(state: "Arkansas", arr: someCapitals) ?? "not found")
         print("---------")
         
         // Q. 3
@@ -57,7 +71,7 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        print(findState(capital: "Denver", arr: someCapitals) ?? "not found")
         print("---------")
         
         // Q. 4
@@ -65,7 +79,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(saidHi())
         print("---------")
 
         // Q. 5
@@ -73,10 +87,10 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
+        print(checkCondition(condi: Ship.friend))
         
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(checkCondition(condi: Ship.battle))
         print("---------")
 
         // Q. 6
@@ -92,8 +106,8 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(myMap(numb3rs) {Int($0) })
+        print(myMap(numb3rs) { Int($0.components(separatedBy: CharacterSet.letters).reduce("") { $0 + $1 }) })
         print("---------")
         
         // Q. 7
@@ -102,7 +116,7 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        dump(myFilter(arr: mixedVerbs, findFrench: { $0.hasSuffix("ing") }))
         print("---------")
         
         // Q. 8a
@@ -127,19 +141,27 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        var students: [C4QStudent] = []
+        students.append(C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"))
+        students.append(C4QStudent(name: "Kadell", id: 23, favoriteLunch: "MVernon Blvd. Chinese"))
+        students.append(C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"))
+        students.append(C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"))
+        students.append(C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner"))
+        dump(students)
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let byName = students.sorted { $0.name < $1.name }
+        dump(byName)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let byID = students.sorted { $0.id < $1.id }
+        dump(byID)
         print("---------")
 
         // Q. 8e
@@ -147,34 +169,99 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        var sameFavorite: [C4QStudent] = []
+        for student in students{
+            sameFavorite.append(C4QStudent(name: student.name, id: student.id, favoriteLunch: "Tamashii Ramen"))
+        }
+        dump(sameFavorite)
+        
+        let sameFavoriteHOrder = students.map{ (student) -> C4QStudent in
+            return C4QStudent(name: student.name, id: student.id, favoriteLunch: "Tamashii Ramen") }
+        dump(sameFavoriteHOrder)
         print("---------")
         
         // Q. 9
         // You may have noticed, or you can test now, that if you update the elements of 
         // one array, all arrays show the updated value. Why is that?
-        // Print the answer here
-        print("\nA. 9")
         
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("\nA. 9")
+        print("The C4QStudent is a class which means it pass by reference. When you modify the variable that reference to the original value, it change the original value, thus the reference variable will changed base on original value.")
         print("---------")
         
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
         // Print the answer here
         print("\nA. 10")
-
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("If C4QStudent was a struct, it will make a copy of C4QStudent when you assign it to a new variable. All it’s copy are independent variable, and it will not update the array when u change the value of copies.")
         print("---------")
-        
     }
+    
+    // MARK: - My functions
+    func sum(arr: [Int]) -> Int{
+        var sum = 0
+        for num in arr{
+            sum += num
+        }
+        return sum
+    }
+    
+    func sumHOrder(arr: [Int]) -> Int{
+        return arr.reduce(0) { $0 + $1 }
+    }
+    
+    func findCapital(state: String, arr: [String: String]) -> String?{
+        if arr[state] != nil{
+            return arr[state]
+        }
+        return nil
+    }
+    
+    func findState(capital: String, arr: [String: String]) -> String?{
+        for (key, value) in arr{
+            if value == capital{
+                return key
+            }
+        }
+        return nil
+    }
+    
+    func saidHi() -> String{
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func checkCondition(condi: Ship) -> String{
+        switch condi {
+        case .friend:
+            return "SAVE"
+        case .battle:
+            return "DANGER"
+        }
+    }
+    
+    func myMap(_ arr: [String], _ toInt: (String) -> Int?) -> [Int] {
+        var arrInt: [Int] = []
+        for str in arr{
+            if let num = toInt(str){
+                arrInt.append(num)
+            }
+        }
+        return arrInt
+    }
+    
+    func myFilter(arr: [String], findFrench: (String) -> Bool) -> [String] {
+        var allFrenchWord: [String] = []
+        for word in arr{
+            if findFrench(word){
+                allFrenchWord.append(word)
+            }
+        }
+        return allFrenchWord
+    }
+    
+    
+    
+    
+    
 }
 
 
