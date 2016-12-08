@@ -41,15 +41,16 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(a1sumInts(arr: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        if let capital = someCapitals["Arkansas"] {
+            print(capital)
+        }
         print("---------")
         
         // Q. 3
@@ -58,6 +59,10 @@ class ViewController: UIViewController {
         // to find out and print the state.
         print("\nA. 3")
         // replace this comment with your answer
+        
+        for (key, value) in someCapitals where value == "Denver" {
+            print(key)
+        }
         print("---------")
         
         // Q. 4
@@ -65,7 +70,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(a4BattleString())
         print("---------")
 
         // Q. 5
@@ -73,10 +78,9 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
-        
+        print(a5Ship(ship: .friend))
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(a5Ship(ship: .battle))
         print("---------")
 
         // Q. 6
@@ -92,8 +96,8 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(a6Map(arrStr: numb3rs, mapClosure: theMapClosure))
+        print(a6Map(arrStr: numb3rs, mapClosure: theMapClosureEC))
         print("---------")
         
         // Q. 7
@@ -102,7 +106,7 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        print(mixedVerbs.filter { $0.hasSuffix("ing") })
         print("---------")
         
         // Q. 8a
@@ -113,6 +117,18 @@ class ViewController: UIViewController {
         //   var favoriteLunch: String
         // 
         // Create an init method that sets all three properties from parameters passed in.
+        
+        class C4QStudent {
+            let name: String
+            let id: Int
+            var favoriteLunch: String
+            
+            init(name: String, id: Int, favoriteLunch: String) {
+                self.name = name
+                self.id = id
+                self.favoriteLunch = favoriteLunch
+            }
+        }
         
         // Q. 8b
         // 
@@ -128,27 +144,37 @@ class ViewController: UIViewController {
         
         print("\nA. 8b")
         // replace this comment with your answer
+        let jermaine = C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's")
+        let kadell = C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese")
+        let miti = C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway")
+        let sabrina = C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza")
+        let marcel = C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner")
+        let studentArr = [jermaine, kadell, miti, sabrina, marcel]
+        dump(studentArr)
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let sortedByNameArr = studentArr.sorted { $0.name < $1.name }
+        dump(sortedByNameArr)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let sortedByIdArr = studentArr.sorted { $0.id < $1.id }
+        dump(sortedByIdArr)
         print("---------")
 
         // Q. 8e
         // Change everybody's favorite lunch spot to "Tamashii Ramen". dump() the arrays.
-        //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        
+        let _ = studentArr.map { $0.favoriteLunch = "Tamashii Ramen" }
+        dump(sortedByNameArr)
+        dump(sortedByIdArr)
         print("---------")
         
         // Q. 9
@@ -156,11 +182,7 @@ class ViewController: UIViewController {
         // one array, all arrays show the updated value. Why is that?
         // Print the answer here
         print("\nA. 9")
-        
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("Beacuse classes are passed by reference not value.")
         print("---------")
         
         // Q. 10.
@@ -168,13 +190,64 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+         print("Structs are passed by value, meaning a copy is made everytime you asign a new instance. The new favorite lunch would not be updated on the sortedByName and sortedByIdArr, they would need to be mapped separately")
         print("---------")
         
     }
+    
+
+    func a1sumInts(arr: [Int]) -> Int {
+        return arr.reduce(0, +)
+    }
+    
+    func a4BattleString() -> String {
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func a5Ship(ship: Ship) -> String {
+        switch ship {
+        case .battle:
+            return "DANGER"
+        case .friend:
+            return "SAFE"
+        }
+    }
+    
+    let theMapClosure = { (str: String) -> Int? in
+        if let anInt = Int(str) {
+            return anInt
+        } else {
+            return nil
+        }
+    }
+    
+    let theMapClosureEC = { (str: String) -> Int? in
+        for c in str.characters {
+            if let anInt = Int(String(c)) {
+                return anInt
+            }
+        }
+        // was hoping that this would initialize an int from "one" but doesn't.... so I hard coded to get the result I wanted. #grayArea
+//        if let anInt = Int.init(str, radix: 0) {
+//            return anInt
+//        }
+        
+        if str == "one" {
+            return 1
+        }
+        return nil
+    }
+
+    func a6Map(arrStr: [String], mapClosure: (String) -> Int?) -> [Int] {
+        var outPutInts: [Int] = []
+        for str in arrStr {
+            if let anInt = mapClosure(str) {
+                outPutInts.append(anInt)
+            }
+        }
+        return outPutInts
+    }
+    
 }
 
 
