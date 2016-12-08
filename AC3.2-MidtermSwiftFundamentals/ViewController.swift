@@ -41,15 +41,16 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(sumInts(arr: someInts))
+        print("EXTRA CREDIT:")
+        print(sumIntsUsingReduce(arr: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(findCapital(capDict: someCapitals, state: "Arkansas"))
         print("---------")
         
         // Q. 3
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        print(findState(capDict: someCapitals, capital: "Denver"))
         print("---------")
         
         // Q. 4
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(battleshipGreeting())
         print("---------")
 
         // Q. 5
@@ -73,10 +74,10 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
+        print(shipStatus(ship: .friend))
         
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(shipStatus(ship: .battle))
         print("---------")
 
         // Q. 6
@@ -92,8 +93,18 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(filterForInts(arr: numb3rs) { Int($0) })
+        
+        print(filterForInts(arr: numb3rs) { element in
+            switch element {
+            case "one":
+                return 1
+            case "3hree":
+                return 3
+            default:
+                return Int(element)
+            }
+        })
         print("---------")
         
         // Q. 7
@@ -102,7 +113,7 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        print(ingVerbs(arr: mixedVerbs))
         print("---------")
         
         // Q. 8a
@@ -127,19 +138,21 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        dump(studentsArr)
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let studentsSortedByName = studentsArr.sorted {$0.name < $1.name}
+        dump(studentsSortedByName)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let studentsSortedById = studentsArr.sorted {$0.id < $1.id}
+        dump(studentsSortedById)
         print("---------")
 
         // Q. 8e
@@ -147,8 +160,11 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        faveLunchTamashii(arr: studentsArr)
+        dump(studentsArr)
+        print("EXTRA CREDIT:")
+        mapFaveLuncnTamashii(arr: studentsArr)
+        dump(studentsArr)
         print("---------")
         
         // Q. 9
@@ -157,10 +173,11 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 9")
         
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print(
+            "Since C4QStudent is a class, it is passed by reference. " +
+            "This means, when the value of a property is changed, " +
+            "every thing pointing to that property is also updated to the changed value."
+        )
         print("---------")
         
         // Q. 10.
@@ -168,12 +185,99 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print(
+            "If C4QStudent was a struct, then it would be passed by value. " +
+            "This means, when the value of a property is changed, " +
+            "other copies of that C4QStudent and their properties will not change."
+        )
         print("---------")
         
+    }
+    
+    func sumInts(arr: [Int]) -> Int {
+        var sum = 0
+        for i in arr {
+            sum += i
+        }
+        return sum
+    }
+    
+    func sumIntsUsingReduce(arr: [Int]) -> Int {
+        return (arr.reduce(0) { $0 + $1 })
+    }
+    
+    func findCapital(capDict: [String : String], state: String) -> String {
+        return capDict[state] ?? "The capital for \(state) cannot be found"
+    }
+    
+    func findState(capDict: [String : String], capital: String) -> String {
+        for (state, cap) in capDict {
+            if capital == cap {
+                return state
+            }
+        }
+        return "The state for \(capital) cannot be found"
+    }
+    
+    func battleshipGreeting() -> String {
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func shipStatus(ship: Ship) -> String {
+        if ship.rawValue == Ship.friend.rawValue {
+            return "SAFE"
+        }
+        return "DANGER"
+    }
+    
+    func filterForInts(arr: [String], closure: (String) -> Int?) -> [Int] {
+        var returnInts = [Int]()
+        for element in arr {
+            if let num = closure(element) {
+                returnInts.append(num)
+            }
+        }
+        return returnInts
+    }
+    
+    func ingVerbs(arr: [String]) -> [String] {
+        var returnArr = [String]()
+        for word in arr {
+            if word.hasSuffix("ing") {
+                returnArr.append(word)
+            }
+        }
+        return returnArr
+    }
+    
+    class C4QStudent {
+        let name: String
+        let id : Int
+        var favoriteLunch: String
+        
+        init(name: String, id: Int, favoriteLunch: String) {
+            self.name = name
+            self.id = id
+            self.favoriteLunch = favoriteLunch
+        }
+    }
+    
+    let studentsArr = [
+        C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"),
+        C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese"),
+        C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"),
+        C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"),
+        C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner"),
+        ]
+    
+    func faveLunchTamashii(arr: [C4QStudent]) {
+        for student in arr {
+            student.favoriteLunch = "Tamashii Ramen"
+        }
+    }
+    
+    func mapFaveLuncnTamashii(arr: [C4QStudent]) {
+        arr.map { $0.favoriteLunch = "Tamashii Ramen" }
     }
 }
 
