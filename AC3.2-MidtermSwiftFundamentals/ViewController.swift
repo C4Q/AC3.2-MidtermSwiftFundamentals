@@ -39,17 +39,16 @@ class ViewController: UIViewController {
         // Use the property someInts as input.
         //
         // E.C. Solve using a higher order function.
-        
+  
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(Q1(sum: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(someCapitals["Arkansas"])
         print("---------")
         
         // Q. 3
@@ -65,7 +64,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(Q4())
         print("---------")
 
         // Q. 5
@@ -73,10 +72,10 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
-        
+        print(Q5(with: safe))
+
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(Q5(with: danger))
         print("---------")
 
         // Q. 6
@@ -102,7 +101,12 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        
+        let wordsTheFrenchMayLike = mixedVerbs.filter { (a: String) -> Bool in
+            return a.contains("ing")
+        }
+        
+        print(wordsTheFrenchMayLike)
         print("---------")
         
         // Q. 8a
@@ -127,19 +131,22 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        let C4QStudents = [Jermaine,Kadell,Miti,Sabrina,Marcel]
+        dump(C4QStudents)
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let sortedC4QStudentsByName = C4QStudents.sorted{($0.name < $1.name)}
+        dump(sortedC4QStudentsByName)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let sortedC4QStudentsByID = C4QStudents.sorted{($0.id < $1.id)}
+        dump(sortedC4QStudentsByID)
         print("---------")
 
         // Q. 8e
@@ -157,10 +164,10 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 9")
         
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        let answer9 = "An array is a struct type so it passed around by value type and not reference type  thus when one array changes the values all those that are equal to it will get the changes"
+        
+        print(answer9)
+
         print("---------")
         
         // Q. 10.
@@ -168,13 +175,86 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        let answer10 = "If the class C4Q student were to change into a struct then C4Q students will no longer be passing by refrence to the memory it stored in and will pass all changes through value"
+        print(answer10)
+
         print("---------")
         
     }
+  //MARK: Question One Function
+    var sum = 0
+    func Q1(sum ofArray: [Int]) -> Int{
+        for i in ofArray {
+            sum += i
+        }
+        return sum
+    }
+    
+//MARK: Question Four Function
+    
+    func Q4() -> String {
+        let stringOne = Ship.battle.rawValue
+        let stringTwo = Ship.friend.rawValue
+        return "Hi, \(stringTwo) let's do \(stringOne)"
+    }
+    
+// MARK: Question Five Function
+    
+    let safe = Ship.friend
+    let danger = Ship.battle
+    
+    func Q5(with Enum: Ship ) -> String {
+        switch Enum.rawValue {
+        case "friend":
+            return "SAFE"
+        case "battle":
+            return "DANGER"
+        default:
+            return "IDK BRO"
+        }
+    }
+
+
+// Mark Question 8 Class: 
+    class C4QStudent {
+        let name: String
+        let id: Int
+        var favoriteLunch: String
+        
+        init(name:String, id: Int, favoriteLunch:String) {
+            self.name = name
+            self.id = id
+            self.favoriteLunch = favoriteLunch
+        }
+    }
+    
+// MARK Question 8B: 
+    
+    let Jermaine = C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's")
+    let Kadell = C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese")
+    let Miti = C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway")
+    let Sabrina = C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza")
+    let Marcel = C4QStudent(name: "Marcel", id: 39, favoriteLunch: " Court Sq. Diner")
+    
+// Mark Q6 partial credit 
+    
+    
+//    func Q6 (with arr: [String], closure: (String) -> Int?) -> [Int?] {
+//        var arrayToReturn: Int? = []
+//        for i in arr {
+//            if String(i)
+//        }
+//    }
+//    // I was going to check if I could make the string into an int then append that to the array and return it .. ran out of time Xcode Crashed :( 
+
+// MARK 3 
+//    
+//    for (key,value) in someCapitals {
+//    print(key,value)
+//    }
+    
+
 }
+
 
 
