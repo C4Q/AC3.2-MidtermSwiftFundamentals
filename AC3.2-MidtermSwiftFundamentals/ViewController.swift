@@ -188,7 +188,7 @@ class ViewController: UIViewController {
         print(
             "If C4QStudent was a struct, then it would be passed by value. " +
             "This means, when the value of a property is changed, " +
-            "other instances of the C4QStudent and their properties will not change."
+            "other copies of that C4QStudent and their properties will not change."
         )
         print("---------")
         
