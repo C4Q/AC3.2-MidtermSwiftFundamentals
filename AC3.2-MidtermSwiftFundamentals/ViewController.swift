@@ -41,15 +41,25 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        func sumsInts(for input: [Int]) -> Int {
+            return input.reduce(0, +)
+        }
+        
+        print(sumsInts(for: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        func capitalOf(city: String, in dict: [String : String]) -> String {
+            if let capital = dict[city] {
+                return capital
+            }
+            return "Not Found"
+        }
+       
+        print(capitalOf(city: "Arkansas", in: someCapitals))
         print("---------")
         
         // Q. 3
@@ -57,7 +67,14 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        func stateOf(capital: String, in dict: [String : String]) -> String {
+            for (state, cap) in dict where cap == capital {
+                return state
+            }
+            return "Not Found"
+        }
+        
+        print(stateOf(capital: "Denver", in: someCapitals))
         print("---------")
         
         // Q. 4
@@ -65,22 +82,37 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        func battleshipString() -> String {
+            return "Hi, \(Ship.friend), let's do \(Ship.battle)"
+        }
+        
+        print(battleshipString())
         print("---------")
-
+        
         // Q. 5
         // Write a function that takes an instance of Ship as its parameter
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
+        let notJason = Ship.friend
+        let jason = Ship.battle
+        
+        func friendOrFoe(for ship: Ship) -> String {
+            switch ship {
+            case .battle:
+                return "DANGER"
+            case .friend:
+                return "SAFE"
+            }
+        }
+        print(friendOrFoe(for: notJason))
         
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(friendOrFoe(for: jason))
         print("---------")
-
+        
         // Q. 6
-        // The year is 2018. You've been called on to decipher a list of inputs that 
+        // The year is 2018. You've been called on to decipher a list of inputs that
         // are suspected to represent numbers. Apple, in an effort to do its part in
         // keeping jobs in America has removed the map function from the library.
         // Write a simple clone of the map function. It should take as its two
@@ -88,12 +120,26 @@ class ViewController: UIViewController {
         // Call your function with a suitable closure to interpret the elements
         // from property numb3rs. You should have two results.
         //
-        // E.C. Make a second call to your function with a new closure that 
+        // E.C. Make a second call to your function with a new closure that
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        
+        let closure = { (a: String) in
+            return Int(a)
+        }
+        
+        func myMap(input: [String], closure: (String) -> Int?) -> [Int] {
+            var nums = [Int]()
+            for possibleNum in input {
+                if let num = closure(possibleNum) {
+                    nums.append(num)
+                }
+            }
+            return nums
+        }
+        
+        print(myMap(input: numb3rs, closure: closure))
         print("---------")
         
         // Q. 7
@@ -102,23 +148,51 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        //func actionVerbs(in input: [String]) -> [String] {
+        //    var verbs = [String]()
+        //
+        //    for all in input {
+        //        if all.contains("ing") {
+        //            verbs.append(all)
+        //        }
+        //    }
+        //
+        //    return verbs
+        //}
+        
+        func actionVerbs(for input: [String]) -> [String] {
+            return input.filter{$0.contains("ing")}
+        }
+        
+        print(actionVerbs(for: mixedVerbs))
         print("---------")
         
         // Q. 8a
         // Create a class C4QStudent with the following properties:
-        //   
+        //
         //   let name: String
         //   let id: Int
         //   var favoriteLunch: String
-        // 
+        //
         // Create an init method that sets all three properties from parameters passed in.
         
+        class C4QStudent {
+            let name: String
+            let id: Int
+            var favoriteLunch: String
+            
+            init(name: String, id: Int, favoriteLunch:String) {
+                self.name = name
+                self.id = id
+                self.favoriteLunch = favoriteLunch
+            }
+        }
+        
         // Q. 8b
-        // 
+        //
         //  Make an instance of C4QStudent from each line of data below (5 total), and put them in
         //  an array. dump() the array.
-        // 
+        //
         //    Jermaine, 83, Millie's
         //    Kadell, 23, Vernon Blvd. Chinese
         //    Miti, 77, Subway
@@ -127,51 +201,55 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        let studentArray = [
+            C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"),
+            C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese"),
+            C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"),
+            C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"),
+            C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner")
+        ]
+        dump(studentArray)
+        
         print("---------")
-
+        
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let sortedStudentArray = studentArray.sorted { $0.name < $1.name }
+        dump(sortedStudentArray)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let idStudentArray = studentArray.sorted { $0.id < $1.id }
+        dump(idStudentArray)
         print("---------")
-
+        
         // Q. 8e
         // Change everybody's favorite lunch spot to "Tamashii Ramen". dump() the arrays.
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        for all in studentArray {
+            all.favoriteLunch = "Tamashii Ramen"
+        }
+        dump(studentArray)
         print("---------")
         
         // Q. 9
-        // You may have noticed, or you can test now, that if you update the elements of 
+        // You may have noticed, or you can test now, that if you update the elements of
         // one array, all arrays show the updated value. Why is that?
         // Print the answer here
         print("\nA. 9")
-        
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("Classes pass by reference.")
         print("---------")
         
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
         // Print the answer here
         print("\nA. 10")
-
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("Structs pass by value, so the arrays would keep its previous value when it was defined? Or something.")
         print("---------")
         
     }
