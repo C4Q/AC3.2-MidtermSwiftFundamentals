@@ -43,6 +43,8 @@ class ViewController: UIViewController {
         print("A. 1")
         // replace this comment with your answer
         // if you do the extra credit, keep it above the line
+            sumOfInt(inputArr:someInts)
+        
         print("---------")
         
         // Q. 2
@@ -59,6 +61,7 @@ class ViewController: UIViewController {
         print("\nA. 3")
         // replace this comment with your answer
         print("---------")
+        
         
         // Q. 4
         // Write a function that takes no arguments and returns
@@ -175,6 +178,70 @@ class ViewController: UIViewController {
         print("---------")
         
     }
+    // Q. 1
+    // Write a function that sums an input array of Int and returns an Int.
+    // Use the property someInts as input.
+    //
+    // E.C. Solve using a higher order function.
+    func sumOfInt(inputArr: [Int]) -> Int {
+        var sum = 0
+        for input in inputArr {
+        sum += input
+        }
+        return sum
+    }
+
+    // Q. 2
+    // You're back in 3rd grade. What's the capital of Arkansas?
+    // Print the answer using the someCapitals dictionary.
+    func capitalQuiz(capitalDict: [String:String]) -> String {
+        for (key, value) in capitalDict {
+            if key == "Arkansas" {
+            return value
+            }
+        }
+        return value(forKey:"Arkansas" ) as! String
+    }
+    
+    
+    // Q. 3
+    // You're in Denver for legal recreational reasons and have subsequently
+    // forgotten what state you're in. Use the someCapitals dictionary
+    // to find out and print the state.
+    func stateSurprise(stateDict: [String:String]) -> String {
+        for key in stateDict.keys {
+            for value in stateDict.values {
+                if value == "Denver" {
+                    return key
+                }
+            }
+        }
+        return value(forKey: "Denver") as! String
+    }
+    
+    
+    // Q. 4
+    // Write a function that takes no arguments and returns
+    // the String, "Hi, friend, let's do battle" using the
+    // Ship enum.
+    func hiEnum()-> Void {
+     "Hi, \(Ship.RawValue.self),let's do battle using the Ship enum "
+    }
+    
+    // Q. 5
+    // Write a function that takes an instance of Ship as its parameter
+    // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
+    // Test and print both cases
+    func returnsSafe(a: Ship)-> String {
+        switch Ship.RawValue {
+        case .1:
+        print("Danger"),
+        case .2:
+            print("Friend")
+        }
+    }
+    
+    
 }
 
 
