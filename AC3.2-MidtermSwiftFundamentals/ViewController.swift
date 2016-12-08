@@ -41,7 +41,8 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
+        let sum = sumArray(arr: someInts)
+        print(sum)
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(someCapitals["Arkansas"]!)
         print("---------")
         
         // Q. 3
@@ -57,7 +58,13 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        let denverState = someCapitals.filter { (key: String, value: String) -> Bool in
+            if value == "Denver" {
+                return true
+            }
+            return false
+        }
+        print(denverState.last!.key)
         print("---------")
         
         // Q. 4
@@ -65,7 +72,8 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        let battleOut = doBattle()
+        print(battleOut)
         print("---------")
 
         // Q. 5
@@ -73,10 +81,11 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
-        
+        var check = checkShip(ship: .battle)
+        print(check)
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        check = checkShip(ship: .friend)
+        print(check)
         print("---------")
 
         // Q. 6
@@ -92,8 +101,11 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        let dec = mapInt(str: numb3rs) { Int($0) }
+        let hex = mapInt(str: numb3rs) { Int($0, radix: 16) }
+        
+        print(dec)
+        print(hex)
         print("---------")
         
         // Q. 7
@@ -102,7 +114,8 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        let gerunds = mixedVerbs.filter { $0.hasSuffix("ing")}
+        print(gerunds)
         print("---------")
         
         // Q. 8a
@@ -127,19 +140,34 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        var studentInput = ["Jermaine,83,Millie's"]
+        studentInput.append("Kadell,23,Vernon Blvd. Chinese")
+        studentInput.append("Miti,77,Subway")
+        studentInput.append("Sabrina,68,Vernon Blvd. Pizza")
+        studentInput.append("Marcel,39,Court Sq. Diner")
+        var students = [C4QStudent]()
+        
+        for el in studentInput {
+            let fields = el.components(separatedBy: ",")
+            let id = Int(fields[1])!
+            let student = C4QStudent(name: fields[0], id: id, lunch: fields[2])
+            students.append(student)
+        }
+        dump(students)
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let alpha = students.sorted { $0.name < $1.name }
+        dump(alpha)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let ids = students.sorted { $0.id < $1.id }
+        dump(ids)
         print("---------")
 
         // Q. 8e
@@ -147,8 +175,14 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        _ = alpha.map { $0.favoriteLunch = "Tamashii" }
+        
+        print("students")
+        dump(students)
+        print("alpha")
+        dump(alpha)
+        print("ids")
+        dump(ids)
         print("---------")
         
         // Q. 9
@@ -157,10 +191,10 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 9")
         
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+         print(
+             "Classes are reference types so updating elements of one array affects " +
+             "those instances that are contained in the other arrays"
+         )
         print("---------")
         
         // Q. 10.
@@ -168,12 +202,59 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+         print(
+             "Changing one array of structs would not affect the other arrays " +
+             "as each of the sorted arrays would have copied instances of the original."
+         )
         print("---------")
         
+    }
+    func sumArray(arr: [Int]) -> Int {
+        var sum = 0
+        for i in arr {
+            sum += i
+        }
+        return sum
+    }
+    
+    func doBattle() -> String {
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func checkShip(ship: Ship) -> String {
+        switch ship {
+        case .friend:
+            return "SAFE"
+        default:
+            return "DANGER"
+        }
+    }
+    
+    func mapInt(str: [String], f: (String)->Int?) -> [Int] {
+        var ret: [Int] = []
+        
+        for s in str {
+            if let i = f(s) {
+                ret.append(i)
+            }
+        }
+        return ret
+    }
+}
+
+class C4QStudent : CustomStringConvertible {
+    let name: String
+    let id: Int
+    var favoriteLunch: String
+    
+    init(name: String, id: Int, lunch: String) {
+        self.name = name
+        self.id = id
+        self.favoriteLunch = lunch
+    }
+    
+    var description: String {
+        return "\(name) - \(id) - \(favoriteLunch)"
     }
 }
 
