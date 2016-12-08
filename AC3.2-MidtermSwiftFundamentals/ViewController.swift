@@ -13,6 +13,20 @@ enum Ship: String {
     case friend
 }
 
+class C4QStudent {
+    let name: String
+    let id: Int
+    var favoriteLunch: String
+    
+    init(name: String, id: Int, favoriteLunch: String) {
+        self.name = name
+        self.id = id
+        self.favoriteLunch = favoriteLunch
+    }
+    
+
+}
+
 class ViewController: UIViewController {
     let someInts = [32, 11, 75, 42]
     let mixedVerbs = ["canoeing", "hiking", "be", "camping", "drive", "drink", "shampooing"]
@@ -42,15 +56,16 @@ class ViewController: UIViewController {
         
         print("A. 1")
         // replace this comment with your answer
+        print(extraCreditOne(someInts:[1,2,4,5]))
         // if you do the extra credit, keep it above the line
-        print("---------")
+        print(addArrayOfInt(someInts: [1,2,4,5]))
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
         // replace this comment with your answer
-        print("---------")
+        print(questionTwo(dict: someCapitals))
         
         // Q. 3
         // You're in Denver for legal recreational reasons and have subsequently
@@ -58,7 +73,7 @@ class ViewController: UIViewController {
         // to find out and print the state.
         print("\nA. 3")
         // replace this comment with your answer
-        print("---------")
+        print(questionThree(dict: someCapitals))
         
         // Q. 4
         // Write a function that takes no arguments and returns
@@ -66,7 +81,7 @@ class ViewController: UIViewController {
         // Ship enum.
         print("\nA. 4")
         // replace this comment with your answer
-        print("---------")
+        print(hiFriend())
 
         // Q. 5
         // Write a function that takes an instance of Ship as its parameter
@@ -74,10 +89,11 @@ class ViewController: UIViewController {
         // Test and print both cases
         print("\nA. 5 test 1")
         // replace this comment with your answer
+        print(safeOrDanger(input: Ship.friend))
         
         print("\nA. 5 test 2")
         // replace this comment with your answer
-        print("---------")
+        print(safeOrDanger(input: Ship.battle))
 
         // Q. 6
         // The year is 2018. You've been called on to decipher a list of inputs that 
@@ -94,7 +110,12 @@ class ViewController: UIViewController {
         print("\nA. 6")
         // replace this comment with your answer
         // if you do the extra credit, keep it above the line
-        print("---------")
+        print(mapClone(arr: ["kadell", "john", "jessica"]) {(a:String) in
+            for b in a.characters {
+                return b.hashValue
+            }
+            return nil
+            } ?? 0)
         
         // Q. 7
         // You got a job translating loan words from English into French. For some unknown reason
@@ -103,7 +124,7 @@ class ViewController: UIViewController {
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
         // replace this comment with your answer
-        print("---------")
+        print(ing(arr: mixedVerbs))
         
         // Q. 8a
         // Create a class C4QStudent with the following properties:
@@ -128,19 +149,22 @@ class ViewController: UIViewController {
         
         print("\nA. 8b")
         // replace this comment with your answer
-        print("---------")
+//        print(object())
+        dump(object())
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
         // replace this comment with your answer
-        print("---------")
+//        print("---------")
+        dump(sortByName())
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
         // replace this comment with your answer
-        print("---------")
+//        print("---------")
+        dump(sortByID())
 
         // Q. 8e
         // Change everybody's favorite lunch spot to "Tamashii Ramen". dump() the arrays.
@@ -149,8 +173,9 @@ class ViewController: UIViewController {
         print("\nA. 8e")
         // replace this comment with your answer
         // if you do the extra credit, keep it above the line
-        print("---------")
-        
+//        print(tamashiiRamen())
+        dump(tamashiiRamen())
+    
         // Q. 9
         // You may have noticed, or you can test now, that if you update the elements of 
         // one array, all arrays show the updated value. Why is that?
@@ -161,7 +186,7 @@ class ViewController: UIViewController {
         //     "You can append lines like this if you " +
         //     "want to be verbose."
         // )
-        print("---------")
+        print("If you are talking about the array I just built, i didnt see the other arrays change. I may be wrong however arent classes reference types meaning that they shouldnt and wont change the other arrays before them")
         
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
@@ -172,9 +197,100 @@ class ViewController: UIViewController {
         //     "You can append lines like this if you " +
         //     "want to be verbose."
         // )
-        print("---------")
+        print("If C4QStudent was a struct the items of the array would be immutable and value type")
         
     }
+    
+    func extraCreditOne(someInts: [Int]) -> Int {
+        return someInts.reduce(0, +)
+    }
+    
+    
+    func addArrayOfInt(someInts: [Int]) -> Int {
+        var sum = 0
+        
+        for nums in someInts {
+            sum += nums
+        }
+        return sum
+    }
+
+    
+    func questionTwo(dict: [String:String]) -> String {
+        return dict["Arkansas"]!
+    }
+    
+    func questionThree(dict: [String: String]) -> String  {
+        var state = ""
+        
+        for (key, value) in dict {
+            if value == "Denver" {
+                state += key
+            }
+        }
+        
+        return state
+    }
+    
+    func hiFriend() -> String {
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func safeOrDanger (input: Ship) -> String {
+        return input.rawValue == "friend" ? "SAFE" : "DANGER"
+        
+    }
+    
+    // The year is 2018. You've been called on to decipher a list of inputs that
+    // are suspected to represent numbers. Apple, in an effort to do its part in
+    // keeping jobs in America has removed the map function from the library.
+    // Write a simple clone of the map function. It should take as its two
+    // parameters an array of String and a closure of type (String)->Int?
+    // Call your function with a suitable closure to interpret the elements
+    // from property numb3rs. You should have two results.
+    
+    func mapClone(arr: [String], closure: (String) -> Int? ) -> Int? {
+        
+        for x in arr {
+           return closure(x)
+        }
+    return nil
+    }
+    
+    func ing(arr: [String]) -> [String] {
+        return arr.filter {$0.hasSuffix("ing") }
+    }
+    
+    func object() -> [C4QStudent] {
+        var array = [C4QStudent]()
+        array.append(C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"))
+        array.append(C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese"))
+        array.append(C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"))
+        array.append(C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"))
+        array.append(C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner"))
+        return array
+    }
+    
+    func sortByName() -> [C4QStudent] {
+        return object().sorted { $0.name < $1.name}
+    }
+    
+    func sortByID() -> [C4QStudent] {
+        return object().sorted{ $0.id <  $1.id }
+    }
+  
+    func tamashiiRamen() -> [C4QStudent]  {
+        let changed = object()
+        for items in changed {
+            items.favoriteLunch = "Tamashii Ramen"
+        }
+        return changed
+    }
+    
+    
+   
+    
 }
+
 
 
