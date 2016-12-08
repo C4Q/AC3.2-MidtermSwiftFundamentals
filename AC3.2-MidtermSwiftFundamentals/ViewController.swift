@@ -41,15 +41,14 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(sum(arr: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(ark())
         print("---------")
         
         // Q. 3
@@ -57,7 +56,7 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        print(den(arr: someCapitals))
         print("---------")
         
         // Q. 4
@@ -65,7 +64,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(bat())
         print("---------")
 
         // Q. 5
@@ -73,10 +72,10 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
+        print(swi(test: Ship.friend))
         
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        print(swi(test: Ship.battle))
         print("---------")
 
         // Q. 6
@@ -92,7 +91,7 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
+        print(num(arr: numb3rs, clo: swa))
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -102,7 +101,7 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        print(ing(arr: mixedVerbs))
         print("---------")
         
         // Q. 8a
@@ -127,28 +126,50 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        class C4QStudent {
+            let name: String
+            let id: Int
+            var favoriteLunch: String
+            
+            init(name: String, id: Int, favoriteLunch: String) {
+                self.name = name
+                self.id = id
+                self.favoriteLunch = favoriteLunch
+            }
+        }
+        
+        var array = [C4QStudent]()
+        array.append(C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"))
+        array.append(C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese"))
+        array.append(C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"))
+        array.append(C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"))
+        array.append(C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner"))
+
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        let sor = array.sorted { $0.name < $1.name }
+        dump(sor)
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        let ids = array.sorted { $0.id < $1.id }
+        dump(ids)
         print("---------")
 
         // Q. 8e
         // Change everybody's favorite lunch spot to "Tamashii Ramen". dump() the arrays.
-        //
+        
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        array.map { $0.favoriteLunch = "Tamashii Ramen" }
+        dump(array)
+        dump(sor)
+        dump(ids)
         print("---------")
         
         // Q. 9
@@ -157,10 +178,11 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 9")
         
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+         print(
+             "To kill a vampire, you must kill the source - the original one" +
+             "So if you change the original array, sorting the information will be from the updated array" +
+             "If you want to keep the original information the same, change it in a new variable or constant"
+         )
         print("---------")
         
         // Q. 10.
@@ -168,12 +190,65 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+         print(
+             "Structs come with a free init " +
+             "Classes are passed by REFERENCE meaning from memory" +
+             "Struct are passed by value meaning new copies are created with the same value" +
+             "The reference points back to the same source every time"
+         )
         print("---------")
         
+    }
+    func sum(arr:[Int]) -> Int {
+        return arr.reduce(0, +)
+    }
+    func ark() -> String {
+        guard let cap = self.someCapitals["Arkansas"] else { return "Not found" }
+        return cap
+    }
+    func den(arr:[String:String]) -> String {
+        for i in arr {
+            if i.value == "Denver" {
+                return i.key
+            }
+        }
+        return "Not found"
+    }
+    func bat() -> String {
+        return "Hi, \(Ship.friend), let's do \(Ship.battle)"
+    }
+    
+    func swi(test: Ship) -> String {
+        switch test {
+            case .friend:
+            return "SAFE"
+            case .battle:
+            return "DANGER"
+        }
+    }
+    
+    let swa = { (a) -> Int? in
+        Int(a)
+    }
+    func num(arr: [String], clo: (String) -> Int?) -> [Int] {
+        var ret = [Int]()
+        for i in arr {
+            if let j = clo(i) {
+                ret.append(j)
+            }
+        }
+        return ret
+    }
+    
+    func ing(arr: [String]) -> [String] {
+        var ret = [String]()
+        for i in arr {
+            guard i.characters.count > 3 else { continue }
+            let range = i.index(i.startIndex, offsetBy: i.characters.count - 3)..<i.index(i.startIndex, offsetBy: i.characters.count)
+            guard i[range] == "ing" else { continue }
+            ret.append(i)
+        }
+        return ret
     }
 }
 
