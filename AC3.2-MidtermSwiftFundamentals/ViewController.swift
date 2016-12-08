@@ -91,8 +91,7 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print("HOPE FOR PARTIAL CREDIT BELOW")
         print("---------")
         
         // Q. 7
@@ -154,8 +153,9 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        let everyBodyLovesRamen = C4QStudents.map({$0.favoriteLunch = "Tamashii Ramen"})
+        dump(everyBodyLovesRamen)
+        
         print("---------")
         
         // Q. 9
