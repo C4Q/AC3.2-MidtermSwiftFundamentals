@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
+        answer1(array: someInts)
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        answer2(dictionary: someCapitals)
         print("---------")
         
         // Q. 3
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        answer4()
         print("---------")
 
         // Q. 5
@@ -73,10 +73,11 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
-        
+        let thisShip = Ship.friend
+        answer5(instanceOf: thisShip)
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        let test2 = Ship.battle
+        answer5(instanceOf: test2)
         print("---------")
 
         // Q. 6
@@ -92,8 +93,8 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+//see below for work done
+    // if you do the extra credit, keep it above the line
         print("---------")
         
         // Q. 7
@@ -127,7 +128,13 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        let Jermaine = C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's")
+        let Kadell = C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese")
+        let Miti = C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway")
+        let Sabrina = C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza")
+        let Marcel = C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner")
+        let answer8Array = [Jermaine, Kadell, Miti, Sabrina, Marcel]
+        dump(answer8Array)
         print("---------")
 
         // Q. 8c
@@ -154,7 +161,7 @@ class ViewController: UIViewController {
         // Q. 9
         // You may have noticed, or you can test now, that if you update the elements of 
         // one array, all arrays show the updated value. Why is that?
-        // Print the answer here
+        // Because classes are a reference type.
         print("\nA. 9")
         
         // print(
@@ -165,7 +172,8 @@ class ViewController: UIViewController {
         
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
-        // Print the answer here
+        // Structs are a value type, so all one change would not affect the rest of the instances.
+        print
         print("\nA. 10")
 
         // print(
@@ -176,5 +184,81 @@ class ViewController: UIViewController {
         
     }
 }
+
+func answer1(array: [Int]) -> Int {
+    var sum = 0
+    for elementInTheArray in array {
+        sum += elementInTheArray
+    }
+    return sum
+}
+func answer2(dictionary: [String : String]) -> String {
+    var arkCapital = ""
+    for (key, _) in dictionary {
+        if key == "Arkansas" {
+            arkCapital += dictionary["Arkansas"]!
+        }
+    }
+    return arkCapital
+}
+func answer4() -> String {
+    let myString = "Hi, \(Ship.friend), let's do \(Ship.battle)"
+    print(myString)
+    return myString
+}
+func answer5(instanceOf: Ship) -> String {
+    let safe = "SAFE"
+    let danger = "DANGER"
+    var amISafe = ""
+    if instanceOf == Ship.friend {
+        amISafe += safe
+    } else {
+        amISafe += danger
+    }
+    return amISafe
+}
+
+//8a.
+class C4QStudent {
+    let name: String
+    let id: Int
+    var favoriteLunch: String
+    
+    init(name: String, id: Int, favoriteLunch: String) {
+        self.name = name
+        self.id = id
+        self.favoriteLunch = favoriteLunch
+    }
+}
+//what I had for six: 
+func answer6(array: [String], closure: (String) -> Int) -> [Int] {
+    var finalDecipher: [Int] = []
+    for element in array {
+        if element == "one" {
+            finalDecipher.append(1)
+        } else if element == "2" {
+            finalDecipher.append(2)
+        }
+    }
+    return finalDecipher
+}
+
+func theClosure(anArray: [String]) -> [String] {
+    var decipheredArray: [String] = []
+    for element in anArray {
+        if element == "one" {
+            decipheredArray.append(element)
+        } else if element == "2" {
+            decipheredArray.append(element)
+        }else {
+            continue
+        }
+    }
+    return decipheredArray
+}
+
+
+
+
 
 
