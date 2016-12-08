@@ -156,7 +156,7 @@ class ViewController: UIViewController {
         // You may have noticed, or you can test now, that if you update the elements of 
         // one array, all arrays show the updated value. Why is that?
         // Print the answer here
-        print("\nA. 9")
+        print("C4QStudent is currently a class and therefore it is updating based off of referance")
         
         // print(
         //     "You can append lines like this if you " +
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
         // Print the answer here
-        print("\nA. 10")
+        print("If C4QStudent were a struct then the array structures would not update because a struct is not a referance type")
 
         // print(
         //     "You can append lines like this if you " +
