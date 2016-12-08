@@ -46,9 +46,11 @@ class ViewController: UIViewController {
         
         //EC
         
-        //let sumOfArray = someInts.reduce({a: Int, nextPartialResult: (a, b: Int) return a + b})
-        
-        print(sumOfArray)
+//        let sumOfArray = someInts.reduce({0, (a: Int, b:Int) in
+//         return a + b
+//        })
+//        
+//        print(sumOfArray)
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -206,7 +208,7 @@ class ViewController: UIViewController {
             student.favoriteLunch = "Tamashii Ramen"
         }
         dump(studentsArray)
-
+        
         
         //E.C.
         
@@ -216,7 +218,7 @@ class ViewController: UIViewController {
         }
         
         dump(changedArray)
-
+        
         // if you do the extra credit, keep it above the line
         print("---------")
         
