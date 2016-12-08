@@ -41,15 +41,19 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        q1Answer(arr: someInts)
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        for (key, value) in someCapitals{
+            if key == "Arkansas"{
+                print(value)
+            }
+        }
+
         print("---------")
         
         // Q. 3
@@ -57,7 +61,12 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        for (key, value) in someCapitals{
+            if value == "Denver"{
+                print(key)
+            }
+        }
+
         print("---------")
         
         // Q. 4
@@ -65,7 +74,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(q4Answer())
         print("---------")
 
         // Q. 5
@@ -73,10 +82,10 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
+        q5nswer(instance: .battle)
         
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+        q5nswer(instance: .friend)
         print("---------")
 
         // Q. 6
@@ -102,7 +111,9 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        var newArr = mixedVerbs.filter{$0.contains("ing")}
+        
+        print(newArr)
         print("---------")
         
         // Q. 8a
@@ -127,7 +138,18 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        class C4QStudent {
+            let name: String
+            let id: Int
+            var favoriteLunch: String
+            
+            init(name: String, id: Int, favoriteLunch: String) {
+                self.favoriteLunch = favoriteLunch
+                self.id = id
+                self.name = name
+            }
+        }
+
         print("---------")
 
         // Q. 8c
@@ -155,7 +177,7 @@ class ViewController: UIViewController {
         // You may have noticed, or you can test now, that if you update the elements of 
         // one array, all arrays show the updated value. Why is that?
         // Print the answer here
-        print("\nA. 9")
+        print("Because C4QStudents is a class which is a reference type which means that when you create an instance of that class and change something, it refers back to the original and changes it.")
         
         // print(
         //     "You can append lines like this if you " +
@@ -166,7 +188,7 @@ class ViewController: UIViewController {
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
         // Print the answer here
-        print("\nA. 10")
+        print("Since struct is a value type when you create an instance for it you make a copy of the original and you only update the copy. The original is still unchanged")
 
         // print(
         //     "You can append lines like this if you " +
@@ -174,6 +196,28 @@ class ViewController: UIViewController {
         // )
         print("---------")
         
+    }
+    
+    
+    func q1Answer(arr: [Int]) -> Int {
+        var sum = 0
+        for num in arr {
+            sum += num
+        }
+        return sum
+    }
+    
+    func q4Answer() -> String {
+        let string = "Hi, \(Ship.friend), let's do \(Ship.battle)"
+        return string
+    }
+
+    func q5nswer(instance: Ship) -> String {
+        if instance == .battle {
+            return "DANGER"
+        } else {
+            return "SAFE"
+        }
     }
 }
 
