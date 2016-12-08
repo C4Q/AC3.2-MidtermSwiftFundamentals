@@ -40,17 +40,17 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         
-        print("A. 1")
+        print("\nA. 1")
         // replace this comment with your answer
         // if you do the extra credit, keep it above the line
-        print("---------")
+        print(sumOf(arr: someInts))
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
         // replace this comment with your answer
-        print("---------")
+        print(findCapital(dict: someCapitals, state: "Arkansas"))
         
         // Q. 3
         // You're in Denver for legal recreational reasons and have subsequently
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         // to find out and print the state.
         print("\nA. 3")
         // replace this comment with your answer
-        print("---------")
+        print(findState(dict: someCapitals, capital: "Denver"))
         
         // Q. 4
         // Write a function that takes no arguments and returns
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         // Ship enum.
         print("\nA. 4")
         // replace this comment with your answer
-        print("---------")
+        print(sendMsg())
 
         // Q. 5
         // Write a function that takes an instance of Ship as its parameter
@@ -75,9 +75,9 @@ class ViewController: UIViewController {
         print("\nA. 5 test 1")
         // replace this comment with your answer
         
-        print("\nA. 5 test 2")
+        print(areYouSafe(friendOrFoe: .battle))
         // replace this comment with your answer
-        print("---------")
+        print(areYouSafe(friendOrFoe: .friend))
 
         // Q. 6
         // The year is 2018. You've been called on to decipher a list of inputs that 
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
         // replace this comment with your answer
-        print("---------")
+        print(verbings(arr: mixedVerbs))
         
         // Q. 8a
         // Create a class C4QStudent with the following properties:
@@ -128,19 +128,19 @@ class ViewController: UIViewController {
         
         print("\nA. 8b")
         // replace this comment with your answer
-        print("---------")
+        print(dump(students))
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
         // replace this comment with your answer
-        print("---------")
+        print(nameSort(arr: students))
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
         // replace this comment with your answer
-        print("---------")
+        print(idSort(arr: students))
 
         // Q. 8e
         // Change everybody's favorite lunch spot to "Tamashii Ramen". dump() the arrays.
@@ -149,7 +149,7 @@ class ViewController: UIViewController {
         print("\nA. 8e")
         // replace this comment with your answer
         // if you do the extra credit, keep it above the line
-        print("---------")
+        print(restaurants(arr: students))
         
         // Q. 9
         // You may have noticed, or you can test now, that if you update the elements of 
@@ -161,7 +161,7 @@ class ViewController: UIViewController {
         //     "You can append lines like this if you " +
         //     "want to be verbose."
         // )
-        print("---------")
+        print("I believe it's because the arrays are a part of the class, which means that their values and its changes can be passed along or inherited.")
         
         // Q. 10.
         // How would it differ if C4QStudent was a struct?
@@ -172,9 +172,142 @@ class ViewController: UIViewController {
         //     "You can append lines like this if you " +
         //     "want to be verbose."
         // )
-        print("---------")
+        print("Structs use reference values, which means that once the value is set within the struct, it can be referenced but not mutated.")
         
     }
+    //Question 1
+    func sumOf(arr: [Int]) -> Int {
+        var sum = 0
+        sum = arr.reduce(0) { $0 + $1 }
+        return sum
+    }
+    
+    //Question 2
+    func findCapital(dict: [String:String], state: String) -> String {
+        var capital = ""
+        for (key, value) in dict {
+            if key == state {
+                capital = value
+            }
+        }
+        return capital
+    }
+    
+    //Question 3
+    func findState(dict: [String:String], capital: String) -> String {
+        var state = ""
+        for (key, value) in dict {
+            if value == capital {
+                state = key
+            }
+        }
+        return state
+    }
+    
+    //Question 4
+    func sendMsg() -> String {
+        return "Hi, \(Ship.friend), let's do \(Ship.battle)"
+    }
+    
+    //Question 5
+    func areYouSafe(friendOrFoe: Ship) -> String {
+        if friendOrFoe == Ship.friend {
+            return "SAFE"
+        } else {
+            return "DANGER"
+        }
+    }
+    
+    //Question 6
+    
+    
+    //Question 7
+    func verbings(arr: [String]) -> [String] {
+        var filteredVerbs = [String]()
+        let ing = "ing"
+        for verb in arr {
+            if verb.contains(ing) {
+                filteredVerbs.append(verb)
+            }
+        }
+        return filteredVerbs
+    }
+
+    //Question 8
+    class C4QStudent {
+        let name: String
+        let id: Int
+        var favoriteLunch: String
+        init(name: String, id: Int, favoriteLunch: String) {
+            self.name = name
+            self.id = id
+            self.favoriteLunch = favoriteLunch
+        }
+    }
+    
+    //8b
+    var students = [
+        C4QStudent(name: "Jermaine", id: 83, favoriteLunch: "Millie's"),
+        C4QStudent(name: "Kadell", id: 23, favoriteLunch: "Vernon Blvd. Chinese"),
+        C4QStudent(name: "Miti", id: 77, favoriteLunch: "Subway"),
+        C4QStudent(name: "Sabrina", id: 68, favoriteLunch: "Vernon Blvd. Pizza"),
+        C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner")
+    ]
+    
+    
+   //8c
+    func nameSort(arr: [C4QStudent]) -> [C4QStudent] {
+        var newArr = [String]()
+        var sortedStudents = [C4QStudent]()
+        
+        for name in students {
+            newArr.append(name.name)
+            newArr = newArr.sorted(by: <)
+        }
+        
+        
+        for nombre in newArr {
+            for name in students {
+                if name.name == nombre {
+                    sortedStudents.append(name)
+                }
+            }
+        }
+        
+        return sortedStudents
+    }
+    
+    //8d
+    func idSort(arr: [C4QStudent]) -> [C4QStudent] {
+        var newArr = [Int]()
+        var sortedStudents = [C4QStudent]()
+        
+        for id in students {
+            newArr.append(id.id)
+            newArr = newArr.sorted(by: <)
+        }
+        
+        
+        for num in newArr {
+            for id in students {
+                if id.id == num {
+                    sortedStudents.append(id)
+                }
+            }
+        }
+        
+        return sortedStudents
+    }
+    
+    //8e
+    func restaurants(arr: [C4QStudent]) -> [C4QStudent] {
+        for favorite in arr {
+            favorite.favoriteLunch = "Tamashii Ramen"
+        }
+        return arr
+    }
+    
+    
 }
 
 
