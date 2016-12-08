@@ -41,44 +41,18 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("\nA. 2")
-        func sumArrayOf(ints: [Int]) -> Int {
-            var sum: Int = 0
-            
-            for int in ints {
-                sum += int
-            }
-            return sum
-        }
-        
         let A1 = sumArrayOf(ints: someInts)
-        
         print(A1)
-        
-        // if you do the extra credit, keep it above the line
-        
         let A1EC = someInts.reduce(0, {x, y in x + y})
-        
         print("Extra credit: \(A1EC)")
-        
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        
-        func findCapital(of: String, in dict: [String:String]) -> String {
-            if let capital = dict[of] {
-                return capital
-            } else {
-                return "That one isn't listed."
-            }
-        }
-        
         let A2 = findCapital(of: "Arkansas", in: someCapitals)
-        
         print(A2)
-        
         print("---------")
         
         // Q. 3
@@ -86,17 +60,6 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        
-        func dudeWheresMyCar(city: String, dict: [String:String]) -> String {
-            var reverseLookUp = [String:String]()
-            
-            for (state, capital) in dict {
-                reverseLookUp[capital] = state
-            }
-            
-            return reverseLookUp[city]!
-        }
-        
         let A3 = dudeWheresMyCar(city: "Denver", dict: someCapitals)
         
         print(A3)
@@ -108,42 +71,20 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        
-        func gokuWantsToSpar() -> String {
-            return "Hey \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
-        }
-        
         let A4 = gokuWantsToSpar()
-        
         print(A4)
-        
         print("---------")
 
         // Q. 5
         // Write a function that takes an instance of Ship as its parameter
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
-        func checkFriendlinessOf(ship: Ship) -> String {
-            switch ship {
-            case .battle:
-                return "DANGER"
-            case .friend:
-                return "SAFE"
-            }
-        }
-        
         print("\nA. 5 test 1")
-        
         let A5_Test1 = checkFriendlinessOf(ship: Ship.battle)
-        
         print(A5_Test1)
-        
         print("\nA. 5 test 2")
-        
         let A5_Test2 = checkFriendlinessOf(ship: Ship.friend)
-        
         print(A5_Test2)
-        
         print("---------")
 
         // Q. 6
@@ -159,38 +100,9 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        
-        let fakeMap = { (a: String) -> Int? in Int(a) }
-        
-        func convertStringToNum(_ string: String) -> Int? {
-            if let unwrappedString = Int(string) {
-                return unwrappedString
-            } else { // i realize that UIKit or something has a built-in function that can convert number-words to ints, but i can't recall it
-                switch string {
-                    case "one": return 1
-                    case "3hree": return 3 // look, sometimes people make typos
-                default: return nil
-                }
-            }
-        }
-        ////
-        func letsCheckIfTheseAreNumbers(_ arr: [String], closure: (String) -> Int?) -> [Int] {
-            var numbers = [Int]()
-            
-            for possibleNumber in arr {
-                if let number = closure(possibleNumber) {
-                    numbers.append(number)
-                }
-            }
-            return numbers
-        }
-        
         let A6 = letsCheckIfTheseAreNumbers(numb3rs, closure: fakeMap)
-        
         print(A6)
-        
         // if you do the extra credit, keep it above the line
-        
         let A6EC = letsCheckIfTheseAreNumbers(numb3rs, closure: { convertStringToNum($0) })
         print("Extra credit: \(A6EC)")
         print("---------")
@@ -201,30 +113,8 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        
-        func findGerundsIn(_ arr: [String]) -> [String] {
-            var gerunds = [String]()
-            let ending: [Character] = ["i", "n", "g"]
-            
-            for possibleGerund in arr {
-                let arrOfPossibleGerund = Array(possibleGerund.characters)
-                var foundGerund: String?
-                for index in 1...3 {
-                    guard arrOfPossibleGerund[arrOfPossibleGerund.count - index] == ending[ending.count - index] else { break }
-                    foundGerund = possibleGerund
-                }
-                if let thereIsSomethingInside = foundGerund {
-                    gerunds.append(thereIsSomethingInside)
-                }
-            }
-            
-            return gerunds
-        }
-        
         let A7 = findGerundsIn(mixedVerbs)
-        
         print(A7)
-        
         print("---------")
         
         // Q. 8a
@@ -361,6 +251,91 @@ class ViewController: UIViewController {
         // )
         print("---------")
         
+    }
+    
+    func sumArrayOf(ints: [Int]) -> Int {
+        var sum: Int = 0
+        
+        for int in ints {
+            sum += int
+        }
+        return sum
+    }
+    
+    func findCapital(of: String, in dict: [String:String]) -> String {
+        if let capital = dict[of] {
+            return capital
+        } else {
+            return "That one isn't listed."
+        }
+    }
+    
+    
+    func dudeWheresMyCar(city: String, dict: [String:String]) -> String {
+        var reverseLookUp = [String:String]()
+        
+        for (state, capital) in dict {
+            reverseLookUp[capital] = state
+        }
+        
+        return reverseLookUp[city]!
+    }
+    
+    func gokuWantsToSpar() -> String {
+        return "Hey \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func checkFriendlinessOf(ship: Ship) -> String {
+        switch ship {
+        case .battle:
+            return "DANGER"
+        case .friend:
+            return "SAFE"
+        }
+    }
+    
+    let fakeMap = { (a: String) -> Int? in Int(a) }
+    
+    func convertStringToNum(_ string: String) -> Int? {
+        if let unwrappedString = Int(string) {
+            return unwrappedString
+        } else { // i realize that UIKit or something has a built-in function that can convert number-words to ints, but i can't recall it
+            switch string {
+            case "one": return 1
+            case "3hree": return 3 // look, sometimes people make typos
+            default: return nil
+            }
+        }
+    }
+    
+    func letsCheckIfTheseAreNumbers(_ arr: [String], closure: (String) -> Int?) -> [Int] {
+        var numbers = [Int]()
+        
+        for possibleNumber in arr {
+            if let number = closure(possibleNumber) {
+                numbers.append(number)
+            }
+        }
+        return numbers
+    }
+    
+    func findGerundsIn(_ arr: [String]) -> [String] {
+        var gerunds = [String]()
+        let ending: [Character] = ["i", "n", "g"]
+        
+        for possibleGerund in arr {
+            let arrOfPossibleGerund = Array(possibleGerund.characters)
+            var foundGerund: String?
+            for index in 1...3 {
+                guard arrOfPossibleGerund[arrOfPossibleGerund.count - index] == ending[ending.count - index] else { break }
+                foundGerund = possibleGerund
+            }
+            if let thereIsSomethingInside = foundGerund {
+                gerunds.append(thereIsSomethingInside)
+            }
+        }
+        
+        return gerunds
     }
 }
 
