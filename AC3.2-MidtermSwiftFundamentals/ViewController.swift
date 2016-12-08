@@ -164,7 +164,6 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        dump(C4QStudent.q8().map{$0.favouriteLunch = "Tamashii Ramen"})
         dump(C4QStudent.q8().map{(a: C4QStudent) -> C4QStudent in
             let newStudent = a
             newStudent.favouriteLunch = "Takashii Ramen"
