@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         
         print("A. 1")
         print(sumOfArr(input: someInts))
-        // if you do the extra credit, keep it above the line
         print("---------")
         
         // Q. 2
