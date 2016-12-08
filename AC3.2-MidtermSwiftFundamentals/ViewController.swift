@@ -115,7 +115,9 @@ class ViewController: UIViewController {
         // Create an init method that sets all three properties from parameters passed in.
         
         // Q. 8b
-        // Create an array of C4QStudent based on this data. Print it.
+        // 
+        //  Make an instance of C4QStudent from each line of data below (5 total), and put them in
+        //  an array. dump() the array.
         // 
         //    Jermaine, 83, Millie's
         //    Kadell, 23, Vernon Blvd. Chinese
