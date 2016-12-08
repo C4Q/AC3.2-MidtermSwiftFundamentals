@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         
         print("A. 1")
         print(sumInts(arr: someInts))
+        print("EXTRA CREDIT:")
         print(sumIntsUsingReduce(arr: someInts))
         print("---------")
         
@@ -161,6 +162,7 @@ class ViewController: UIViewController {
         print("\nA. 8e")
         faveLunchTamashii(arr: studentsArr)
         dump(studentsArr)
+        print("EXTRA CREDIT:")
         mapFaveLuncnTamashii(arr: studentsArr)
         dump(studentsArr)
         print("---------")
@@ -172,8 +174,8 @@ class ViewController: UIViewController {
         print("\nA. 9")
         
         print(
-            "Since C4QStudent is a class, it is passed by reference." +
-            "This means, when the value of a property is changed," +
+            "Since C4QStudent is a class, it is passed by reference. " +
+            "This means, when the value of a property is changed, " +
             "every thing pointing to that property is also updated to the changed value."
         )
         print("---------")
@@ -184,9 +186,9 @@ class ViewController: UIViewController {
         print("\nA. 10")
 
         print(
-            "If C4QStudent was a struct, then it will be passed by value" +
-            "This means changing the value of the property in one place" +
-            "will not change the value of that property elsewhere"
+            "If C4QStudent was a struct, then it would be passed by value. " +
+            "This means, when the value of a property is changed, " +
+            "other instances of the C4QStudent and their properties will not change."
         )
         print("---------")
         
@@ -218,7 +220,7 @@ class ViewController: UIViewController {
     }
     
     func battleshipGreeting() -> String {
-        return "Hi \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
     }
     
     func shipStatus(ship: Ship) -> String {
