@@ -41,10 +41,6 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        func sumsInts(for input: [Int]) -> Int {
-            return input.reduce(0, +)
-        }
-        
         print(sumsInts(for: someInts))
         print("---------")
         
@@ -52,13 +48,6 @@ class ViewController: UIViewController {
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        func capitalOf(city: String, in dict: [String : String]) -> String {
-            if let capital = dict[city] {
-                return capital
-            }
-            return "Not Found"
-        }
-       
         print(capitalOf(city: "Arkansas", in: someCapitals))
         print("---------")
         
@@ -67,13 +56,6 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        func stateOf(capital: String, in dict: [String : String]) -> String {
-            for (state, cap) in dict where cap == capital {
-                return state
-            }
-            return "Not Found"
-        }
-        
         print(stateOf(capital: "Denver", in: someCapitals))
         print("---------")
         
@@ -82,10 +64,6 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        func battleshipString() -> String {
-            return "Hi, \(Ship.friend), let's do \(Ship.battle)"
-        }
-        
         print(battleshipString())
         print("---------")
         
@@ -94,17 +72,6 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        let notJason = Ship.friend
-        let jason = Ship.battle
-        
-        func friendOrFoe(for ship: Ship) -> String {
-            switch ship {
-            case .battle:
-                return "DANGER"
-            case .friend:
-                return "SAFE"
-            }
-        }
         print(friendOrFoe(for: notJason))
         
         print("\nA. 5 test 2")
@@ -124,21 +91,6 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        
-        let closure = { (a: String) in
-            return Int(a)
-        }
-        
-        func myMap(input: [String], closure: (String) -> Int?) -> [Int] {
-            var nums = [Int]()
-            for possibleNum in input {
-                if let num = closure(possibleNum) {
-                    nums.append(num)
-                }
-            }
-            return nums
-        }
-        
         print(myMap(input: numb3rs, closure: closure))
         print("---------")
         
@@ -148,22 +100,6 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        //func actionVerbs(in input: [String]) -> [String] {
-        //    var verbs = [String]()
-        //
-        //    for all in input {
-        //        if all.contains("ing") {
-        //            verbs.append(all)
-        //        }
-        //    }
-        //
-        //    return verbs
-        //}
-        
-        func actionVerbs(for input: [String]) -> [String] {
-            return input.filter{$0.contains("ing")}
-        }
-        
         print(actionVerbs(for: mixedVerbs))
         print("---------")
         
@@ -175,18 +111,6 @@ class ViewController: UIViewController {
         //   var favoriteLunch: String
         //
         // Create an init method that sets all three properties from parameters passed in.
-        
-        class C4QStudent {
-            let name: String
-            let id: Int
-            var favoriteLunch: String
-            
-            init(name: String, id: Int, favoriteLunch:String) {
-                self.name = name
-                self.id = id
-                self.favoriteLunch = favoriteLunch
-            }
-        }
         
         // Q. 8b
         //
@@ -209,7 +133,6 @@ class ViewController: UIViewController {
             C4QStudent(name: "Marcel", id: 39, favoriteLunch: "Court Sq. Diner")
         ]
         dump(studentArray)
-        
         print("---------")
         
         // Q. 8c
@@ -251,8 +174,74 @@ class ViewController: UIViewController {
         print("\nA. 10")
         print("Structs pass by value, so the arrays would keep its previous value when it was defined? Or something.")
         print("---------")
-        
     }
+    
+    func sumsInts(for input: [Int]) -> Int {
+        return input.reduce(0, +)
+    }
+    
+    func capitalOf(city: String, in dict: [String : String]) -> String {
+        if let capital = dict[city] {
+            return capital
+        }
+        return "Not Found"
+    }
+
+    func stateOf(capital: String, in dict: [String : String]) -> String {
+        for (state, cap) in dict where cap == capital {
+            return state
+        }
+        return "Not Found"
+    }
+    
+    func battleshipString() -> String {
+        return "Hi, \(Ship.friend), let's do \(Ship.battle)"
+    }
+    
+    let notJason = Ship.friend
+    let jason = Ship.battle
+    
+    func friendOrFoe(for ship: Ship) -> String {
+        switch ship {
+        case .battle:
+            return "DANGER"
+        case .friend:
+            return "SAFE"
+        }
+    }
+    
+    let closure = { (a: String) in
+        return Int(a)
+    }
+    
+    func myMap(input: [String], closure: (String) -> Int?) -> [Int] {
+        var nums = [Int]()
+        for possibleNum in input {
+            if let num = closure(possibleNum) {
+                nums.append(num)
+            }
+        }
+        return nums
+    }
+
+    func actionVerbs(for input: [String]) -> [String] {
+        return input.filter{$0.contains("ing")}
+    }
+
+    class C4QStudent {
+        let name: String
+        let id: Int
+        var favoriteLunch: String
+        
+        init(name: String, id: Int, favoriteLunch:String) {
+            self.name = name
+            self.id = id
+            self.favoriteLunch = favoriteLunch
+        }
+    }
+    
+    
+    
 }
 
 
