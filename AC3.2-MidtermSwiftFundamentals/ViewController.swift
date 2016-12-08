@@ -41,15 +41,15 @@ class ViewController: UIViewController {
         // E.C. Solve using a higher order function.
         
         print("A. 1")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(q1(arr: someInts))
+        print(q1EC(arr: someInts))
         print("---------")
         
         // Q. 2
         // You're back in 3rd grade. What's the capital of Arkansas?
         // Print the answer using the someCapitals dictionary.
         print("\nA. 2")
-        // replace this comment with your answer
+        print(q2(ofState: "Arkansas", someCapitals) ?? "that Isn't some capitol")
         print("---------")
         
         // Q. 3
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         // forgotten what state you're in. Use the someCapitals dictionary
         // to find out and print the state.
         print("\nA. 3")
-        // replace this comment with your answer
+        print(q3(city: "Denver", someCapitals) ?? "that isn't a State Capitol in our database yo.")
         print("---------")
         
         // Q. 4
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         // the String, "Hi, friend, let's do battle" using the
         // Ship enum.
         print("\nA. 4")
-        // replace this comment with your answer
+        print(q4())
         print("---------")
 
         // Q. 5
@@ -73,10 +73,9 @@ class ViewController: UIViewController {
         // and returns "SAFE" if it's .friend, or "DANGER" if it's .battle.
         // Test and print both cases
         print("\nA. 5 test 1")
-        // replace this comment with your answer
-        
+            print(q5(friendOrFoe: .friend))
         print("\nA. 5 test 2")
-        // replace this comment with your answer
+            print(q5(friendOrFoe: .battle))
         print("---------")
 
         // Q. 6
@@ -92,8 +91,25 @@ class ViewController: UIViewController {
         // returns more numbers. I was able to get 4 Ints.
         
         print("\nA. 6")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        print(q6(arr: numb3rs){Int($0)})
+        
+        
+        print(q6(arr: numb3rs){(a: String) -> Int? in
+            if Int(a) == nil {
+                let intAsString: Int
+                switch a {
+                case "one":
+                    intAsString = 1
+                case "3hree":
+                    intAsString = 3
+                default:
+                    return nil
+                }
+                return intAsString
+                
+            }
+            return Int(a)!
+        })
         print("---------")
         
         // Q. 7
@@ -102,7 +118,7 @@ class ViewController: UIViewController {
         // and filter them so only those in the -ing form remain. Use the mixedVerbs property as input.
         // Output: ["canoeing", "hiking", "camping", "shampooing"]
         print("\nA. 7")
-        // replace this comment with your answer
+        print(q7(arr: mixedVerbs))
         print("---------")
         
         // Q. 8a
@@ -127,19 +143,20 @@ class ViewController: UIViewController {
         //
         
         print("\nA. 8b")
-        // replace this comment with your answer
+        dump(C4QStudent.q8())
         print("---------")
 
         // Q. 8c
         // Create a new array by sorting by name. dump() it.
         print("\nA. 8c")
-        // replace this comment with your answer
+        dump(C4QStudent.q8().sorted{ $0.name < $1.name })
         print("---------")
         
         // Q. 8d
         // Create a new array by sorting by id. dump() it.
         print("\nA. 8d")
-        // replace this comment with your answer
+        dump(C4QStudent.q8().sorted{ $0.id < $1.id })
+
         print("---------")
 
         // Q. 8e
@@ -147,8 +164,12 @@ class ViewController: UIViewController {
         //
         // E.C. Solve using a higher order function.
         print("\nA. 8e")
-        // replace this comment with your answer
-        // if you do the extra credit, keep it above the line
+        dump(C4QStudent.q8().map{(a: C4QStudent) -> C4QStudent in
+            let newStudent = a
+            newStudent.favouriteLunch = "Takashii Ramen"
+            return newStudent
+            }
+        )
         print("---------")
         
         // Q. 9
@@ -156,11 +177,7 @@ class ViewController: UIViewController {
         // one array, all arrays show the updated value. Why is that?
         // Print the answer here
         print("\nA. 9")
-        
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("Classes are a reference type, which means that when you call out to the class, you aren't creating a new one, you are just pointing to the original. Thus if you change something about it it will change the actual class.")
         print("---------")
         
         // Q. 10.
@@ -168,13 +185,64 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 10")
 
-        // print(
-        //     "You can append lines like this if you " +
-        //     "want to be verbose."
-        // )
+        print("It would create a bunch of different structs everytime it needed to access a Student. This would preserve the original in each function call because you are literally making a completely seperate struct that doesn't know about the first beyond starting as a carbon copy. ")
         print("---------")
         
     }
+    
+    //MARK: FUNctions
+    func q1 (arr: [Int]) -> Int {
+        var sum = 0
+        for int in arr {
+            sum += int
+        }
+        return sum
+    }
+    
+    func q1EC (arr: [Int]) -> Int {
+        return arr.reduce(0, {$0 + $1})
+    }
+    
+    func q2(ofState: String, _ dict: [String: String]) -> String? {
+        return dict[ofState]
+    }
+    
+    func q3(city: String, _ dict: [String: String]) -> String? {
+        for key in dict.keys {
+            if dict[key] == city {
+                return key
+            }
+        }
+        return nil
+    }
+    func q4() -> String {
+        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+    }
+    
+    func q5(friendOrFoe: Ship) -> String {
+        switch friendOrFoe {
+        case .friend:
+            return "SAFE"
+        case .battle:
+            return "DANGER"
+        }
+    }
+    
+    func q6 (arr: [String], closure: (String) -> Int?) -> [Int] {
+        var results: [Int] = []
+        for element in arr {
+            if let e = closure(element) {
+                results.append(e)
+            }
+        }
+        return results
+    }
+
+    func q7 (arr: [String]) -> [String] {
+        return arr.filter{$0.hasSuffix("ing")}
+    }
+    
+    
 }
 
 
