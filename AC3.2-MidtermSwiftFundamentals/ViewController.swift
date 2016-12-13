@@ -227,7 +227,7 @@ class ViewController: UIViewController {
         // Print the answer here
         print("\nA. 9")
         
-        let A9 = "Because we have Student set up as a class, and classes are reference values. When you create a copy of an object that is a reference value, you are actually creating a pointer to the same spot in memory as the original instance of that object. So if you change something in any instance of the object, you are working on the spot in memory that is being referenced by every instance of that object, and this will alter the original & any copies."
+        let A9 = "Because we have Student set up as a class, and classes are reference types. When you create a copy of an object that is a reference type, you are actually creating a pointer to the same spot in memory as the original instance of that object. So if you change something in any instance of the object, you are working on the spot in memory that is being referenced by every instance of that object, and this will alter the original & any copies."
         
         print(A9)
         
