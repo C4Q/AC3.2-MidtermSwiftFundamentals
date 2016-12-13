@@ -43,6 +43,9 @@ class ViewController: UIViewController {
         print("A. 1")
         let sum = sumArray(arr: someInts)
         print(sum)
+        
+        let sum2 = someInts.reduce(0, +)
+        print(sum2)
         // if you do the extra credit, keep it above the line
         print("---------")
         
@@ -218,7 +221,7 @@ class ViewController: UIViewController {
     }
     
     func doBattle() -> String {
-        return "Hi, \(Ship.friend.rawValue), let's do \(Ship.battle.rawValue)"
+        return "Hi, \(Ship.friend), let's do \(Ship.battle)"
     }
     
     func checkShip(ship: Ship) -> String {
